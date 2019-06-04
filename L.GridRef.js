@@ -1,20 +1,22 @@
+import bigu from 'bigu';
+
 (function (factory) {
-    // Establish the root object, `window` (`self`) in the browser, or `global` on the server.
-    // We use `self` instead of `window` for `WebWorker` support.
-    var root = (typeof self === 'object' && self.self === self && self) ||
-      (typeof global === 'object' && global.global === global && global);
+  // Establish the root object, `window` (`self`) in the browser, or `global` on the server.
+  // We use `self` instead of `window` for `WebWorker` support.
+  var root = (typeof self === 'object' && self.self === self && self) ||
+    (typeof global === 'object' && global.global === global && global);
 
-    //AMD
-    if (typeof define === 'function' && define.amd) {
-      define(['leaflet', 'bigu', 'exports'], function (L, bigu, exports) {
-        root.GridRef = factory(root, exports, L, bigu);
-      });
+  //AMD
+  if (typeof define === 'function' && define.amd) {
+    define(['leaflet', 'bigu', 'exports'], function (L, bigu, exports) {
+      root.GridRef = factory(root, exports, L, bigu);
+    });
 
-      //Browser global
-    } else {
-      root.GridRef = factory(root, {}, L, bigu);
-    }
-  }(function (root, m, L, bigu) {
+    //Browser global
+  } else {
+    root.GridRef = factory(root, {}, L, bigu);
+  }
+}(function (root, m, L, bigu) {
   'use strict';
 
   var GRID_STEP = 100000; // metres
@@ -169,7 +171,7 @@
       north = north > 1300000 ? 1300000 : north; // do not exceed
       east = east > 700000 ? 700000 : east; // do not exceed
 
-      return {west: west, south: south, north: north, east: east};
+      return { west: west, south: south, north: north, east: east };
     }
   });
 
